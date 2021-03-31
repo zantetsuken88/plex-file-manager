@@ -1,0 +1,44 @@
+<svg viewBox="0 0 2100 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <radialGradient id="A" cx="1244.322" cy="919.871" r=".925" gradientTransform="matrix(60.622334, 0, 0, -99.430557, -75379.532119, 91512.889591)">
+            <stop offset="0" stop-color="#f9be03"/>
+            <stop offset="1" stop-color="#cc7c19"/>
+        </radialGradient>
+    </defs>
+
+    <path d="M 0 0 L 30 0 L 60 50 L 30 100 L 0 100 L 30 50 L 0 0" fill="url(#A)"/>
+    <path d="M 60 0 L 90 0 L 120 50 L 90 100 L 60 100 L 90 50 L 60 0" fill="url(#A)"/>
+    <path d="M 120 0 L 150 0 L 180 50 L 150 100 L 120 100 L 150 50 L 120 0" fill="url(#A)"/>
+    <path d="M 180 0 L 210 0 L 240 50 L 210 100 L 180 100 L 210 50 L 180 0" fill="url(#A)"/>
+    <path d="M 240 0 L 270 0 L 300 50 L 270 100 L 240 100 L 270 50 L 240 0" fill="url(#A)"/>
+    <path d="M 300 0 L 330 0 L 360 50 L 330 100 L 300 100 L 330 50 L 300 0" fill="url(#A)"/>
+    <path d="M 360 0 L 390 0 L 420 50 L 390 100 L 360 100 L 390 50 L 360 0" fill="url(#A)"/>
+    <path d="M 420 0 L 450 0 L 480 50 L 450 100 L 420 100 L 450 50 L 420 0" fill="url(#A)"/>
+    <path d="M 480 0 L 510 0 L 540 50 L 510 100 L 480 100 L 510 50 L 480 0" fill="url(#A)"/>
+    <path d="M 540 0 L 570 0 L 600 50 L 570 100 L 540 100 L 570 50 L 540 0" fill="url(#A)"/>
+    <path d="M 600 0 L 630 0 L 660 50 L 630 100 L 600 100 L 630 50 L 600 0" fill="url(#A)"/>
+    <path d="M 660 0 L 690 0 L 720 50 L 690 100 L 660 100 L 690 50 L 660 0" fill="url(#A)"/>
+    <path d="M 720 0 L 750 0 L 780 50 L 750 100 L 720 100 L 750 50 L 720 0" fill="url(#A)"/>
+    <path d="M 780 0 L 810 0 L 840 50 L 810 100 L 780 100 L 810 50 L 780 0" fill="url(#A)"/>
+    <path d="M 840 0 L 870 0 L 900 50 L 870 100 L 840 100 L 870 50 L 840 0" fill="url(#A)"/>
+    <path d="M 900 0 L 930 0 L 960 50 L 930 100 L 900 100 L 930 50 L 900 0" fill="url(#A)"/>
+    <path d="M 960 0 L 990 0 L 1020 50 L 990 100 L 960 100 L 990 50 L 960 0" fill="url(#A)"/>
+    <path d="M 1020 0 L 1050 0 L 1080 50 L 1050 100 L 1020 100 L 1050 50 L 1020 0" fill="url(#A)"/>
+    <path d="M 1080 0 L 1110 0 L 1140 50 L 1110 100 L 1080 100 L 1110 50 L 1080 0" fill="url(#A)"/>
+    <path d="M 1140 0 L 1170 0 L 1200 50 L 1170 100 L 1140 100 L 1170 50 L 1140 0" fill="url(#A)"/>
+    <path d="M 1200 0 L 1230 0 L 1260 50 L 1230 100 L 1200 100 L 1230 50 L 1200 0" fill="url(#A)"/>
+    <path d="M 1260 0 L 1290 0 L 1320 50 L 1290 100 L 1260 100 L 1290 50 L 1260 0" fill="url(#A)"/>
+    <path d="M 1320 0 L 1350 0 L 1380 50 L 1350 100 L 1320 100 L 1350 50 L 1320 0" fill="url(#A)"/>
+    <path d="M 1380 0 L 1410 0 L 1440 50 L 1410 100 L 1380 100 L 1410 50 L 1380 0" fill="url(#A)"/>
+    <path d="M 1440 0 L 1470 0 L 1500 50 L 1470 100 L 1440 100 L 1470 50 L 1440 0" fill="url(#A)"/>
+    <path d="M 1500 0 L 1530 0 L 1560 50 L 1530 100 L 1500 100 L 1530 50 L 1500 0" fill="url(#A)"/>
+    <path d="M 1560 0 L 1590 0 L 1620 50 L 1590 100 L 1560 100 L 1590 50 L 1560 0" fill="url(#A)"/>
+    <path d="M 1620 0 L 1650 0 L 1680 50 L 1650 100 L 1620 100 L 1650 50 L 1620 0" fill="url(#A)"/>
+    <path d="M 1680 0 L 1710 0 L 1740 50 L 1710 100 L 1680 100 L 1710 50 L 1680 0" fill="url(#A)"/>
+    <path d="M 1740 0 L 1770 0 L 1800 50 L 1770 100 L 1740 100 L 1770 50 L 1740 0" fill="url(#A)"/>
+    <path d="M 1800 0 L 1830 0 L 1860 50 L 1830 100 L 1800 100 L 1830 50 L 1800 0" fill="url(#A)"/>
+    <path d="M 1860 0 L 1890 0 L 1920 50 L 1890 100 L 1860 100 L 1890 50 L 1860 0" fill="url(#A)"/>
+    <path d="M 1920 0 L 1950 0 L 1980 50 L 1950 100 L 1920 100 L 1950 50 L 1920 0" fill="url(#A)"/>
+    <path d="M 1980 0 L 2010 0 L 2040 50 L 2010 100 L 1980 100 L 2010 50 L 1980 0" fill="url(#A)"/>
+    <path d="M 2040 0 L 2070 0 L 2100 50 L 2070 100 L 2040 100 L 2070 50 L 2040 0" fill="url(#A)"/>
+</svg>

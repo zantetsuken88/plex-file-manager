@@ -1,18 +1,20 @@
 {
   "name": "plex-file-manager",
+  "type": "module",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@opuscapita/filemanager-server": "^1.1.1",
-    "@opuscapita/react-filemanager": "^1.1.1",
-    "@opuscapita/react-filemanager-connector-node-v1": "^1.1.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "ftp-srv": "^4.3.4",
+    "axios": "^0.21.1",
+    "busboy": "^0.3.1",
+    "dotenv": "^8.2.0",
+    "p-queue": "^6.6.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "sass": "^1.32.6"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -34,5 +36,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/busboy": "^0.2.3",
+    "@types/p-queue": "^3.2.1",
+    "event-debug": "^2.1.0"
   }
 }

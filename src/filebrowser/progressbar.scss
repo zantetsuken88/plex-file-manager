@@ -1,0 +1,32 @@
+.progress-bar {
+  &-container {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-row-start: 3;
+    width: 75%;
+    place-self: center;
+
+    & p {
+      place-self: center;
+      margin: 5px 0 0 10px;
+      color: #fffeb5;
+      text-shadow: -1px -1px 5px #bf179f;
+      font-weight: 300;
+      text-align: left;
+    }
+  }
+
+  height: 1rem;
+  width: 100%;
+  border: 1px solid hsla(0,0%,100%,.2);
+  border-radius: 10px;
+  overflow: hidden;
+  align-self: center;
+
+  &-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width .2s ease-in;
+    background: url('../assets/plex-arrow.svg') repeat-x;
+  }
+}
