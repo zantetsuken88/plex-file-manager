@@ -1,0 +1,17 @@
+.app {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  color: hsla(0,0%,100%,.7);
+}
+
+.header {
+  width: 95vw;
+  display: grid;
+  grid-template-columns: 30rem 1fr;
+  grid-gap: 1rem;
+}
+
+.logo {
+  grid-column-start: 0;
+}

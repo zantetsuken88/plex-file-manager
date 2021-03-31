@@ -1,0 +1,48 @@
+<svg viewBox="0 0 60 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <radialGradient id="A" cx="1244.322" cy="919.871" r=".925" gradientTransform="matrix(60.622334, 0, 0, -99.430557, -75379.532119, 91512.889591)" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#f9be03"/>
+            <stop offset="1" stop-color="#cc7c19"/>
+        </radialGradient>
+    </defs>
+    <path d="M -120 0 L -90 0 L -60  50 L -90 100 L -120 100 L -90 50 L -120 0" id="arrow0" fill="url(#A)"/>
+    <path d="M -60  0 L -30 0 L   0  50 L -30 100 L  -60 100 L -30 50 L  -60 0" id="arrow1" fill="url(#A)"/>
+    <path d="M   0  0 L  30 0 L  60  50 L  30 100 L    0 100 L  30 50 L    0 0" id="arrow2" fill="url(#A)"/>
+    <path d="M  60  0 L  90 0 L 120  50 L  90 100 L   60 100 L  90 50 L   60 0" id="arrow3" fill="url(#A)"/>
+    <animate
+            href="#arrow0"
+            attributeName="d"
+            from="M -120 0 L -90 0 L -60  50 L -90 100 L -120 100 L -90 50 L -120 0"
+            to=  "M -60  0 L -30 0 L   0  50 L -30 100 L  -60 100 L -30 50 L  -60 0"
+            dur="0.5s"
+            begin="0s"
+            repeatCount="indefinite"
+    />
+    <animate
+            href="#arrow1"
+            attributeName="d"
+            from="M -60 0 L -30 0 L   0  50 L -30 100 L -60 100 L -30 50 L -60 0"
+            to=  "M   0 0 L  30 0 L  60  50 L  30 100 L   0 100 L  30 50 L   0 0"
+            dur="0.5s"
+            begin="0s"
+            repeatCount="indefinite"
+    />
+    <animate
+            href="#arrow2"
+            attributeName="d"
+            from="M   0 0 L  30 0 L  60  50 L  30 100 L   0 100 L  30 50 L   0 0"
+            to=  "M  60 0 L  90 0 L 120  50 L  90 100 L  60 100 L  90 50 L  60 0"
+            dur="0.5s"
+            begin="0s"
+            repeatCount="indefinite"
+    />
+    <animate
+            href="#arrow3"
+            attributeName="d"
+            from="M  60 0 L  90  0 L 120  50 L  90 100 L  60 100 L  90 50 L  60 0"
+            to=  "M 120 0 L  150 0 L 180  50 L 150 100 L 120 100 L 150 50 L 120 0"
+            dur="0.5s"
+            begin="0s"
+            repeatCount="indefinite"
+    />
+</svg>

@@ -1,0 +1,134 @@
+.uploader-container {
+  display: grid;
+  grid-template-rows: 1fr 10rem 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+
+  & button {
+    grid-column-start: 2;
+    grid-row-start: 3;
+    background-color: unset;
+    border-radius: 40px;
+    box-shadow: 0 0 2px 1px #2049C1, inset 0 0 2px 1px #2049C1;
+    border: none;
+    font: unset;
+    color: unset;
+    place-self: center;
+    padding: 5px 20px;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 2px 1px #2049C1, inset 0 0 2px 1px #fefcb4;
+    }
+  }
+}
+
+.directory-information {
+  grid-row-start: 1;
+  place-self: center;
+  width: 75%;
+  display: grid;
+}
+
+.dropzone {
+  grid-row-start: 2;
+  height: 75%;
+  width: 75%;
+  place-self: center;
+  border: 3px dotted #bf179f;
+}
+
+.file-input-label {
+  display: grid;
+  height: 100%;
+  width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  & img {
+    width: 25%;
+    place-self: center;
+  }
+}
+
+#file-input-hidden {
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+}
+
+.selection-details {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  place-self: center;
+  color: #fffeb5;
+  text-shadow: -1px -1px 5px #bf179f;
+  font-weight: 300;
+  text-align: left;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #bf179f;
+  padding: 0;
+  margin: 0;
+
+  & > div {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    height: 90%;
+  }
+
+  & legend {
+    font-size: 10px;
+    margin: 2px 5px;
+    height: 16px;
+    text-shadow: none;
+    width: 100px;
+  }
+}
+
+.filename-container {
+  display: grid;
+  grid-template-columns: 24px 1fr 3rem;
+  grid-gap: 5px;
+  margin: 5px;
+
+  & img {
+    width: 16px;
+    place-self: center;
+  }
+}
+
+.empty-state {
+  grid-row-start: 2;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 5px;
+  place-self: center;
+  margin: 0 5px;
+
+  & img {
+    width: 80%;
+    place-self: center;
+  }
+
+  & p {
+    place-self: center;
+  }
+}
+
+.file-names, .file-sizes {
+  margin: 0;
+  line-height: 21px;
+  display: inline;
+  align-self: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.file-sizes {
+  font-size: 12px;
+}

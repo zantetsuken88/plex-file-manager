@@ -1,0 +1,24 @@
+<svg viewBox="0 0 600 100" xmlns="http://www.w3.org/2000/svg" width="100px">
+    <defs>
+        <linearGradient gradientUnits="userSpaceOnUse" x1="292.625" y1="46.141" x2="292.625" y2="85.969" id="gradient-0">
+            <stop offset="0" style="stop-color: rgb(255, 254, 181);"/>
+            <stop offset="1" style="stop-color: rgb(191, 23, 159);"/>
+        </linearGradient>
+        <radialGradient gradientUnits="userSpaceOnUse" cx="248.928" cy="82.152" r="88.547" id="gradient-1" gradientTransform="matrix(1.735726, 0.140755, -0.110775, 1.104474, -169.384804, -55.841722)">
+            <stop offset="0" style="stop-color: rgb(255, 254, 181);"/>
+            <stop offset="1" style="stop-color: rgb(191, 23, 159);"/>
+        </radialGradient>
+    </defs>
+    <text font-family="Open Sans"
+          transform="matrix(3.256955, 0, 0, 3.622128, -653.066528, -189.25853)"
+          fill="url(#gradient-1)"
+          font-size="29.2646px"
+          font-weight="300"
+          stroke="rgb(0, 0, 0"
+          stroke-width="0.5px"
+          x="204.086"
+          y="77.383"
+    >
+        Files Selected
+    </text>
+</svg>

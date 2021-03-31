@@ -1,0 +1,36 @@
+.directory {
+  display: inline-grid;
+  grid-template-columns: 36px 1fr;
+  cursor: pointer;
+
+  & img {
+    height: 36px;
+    place-self: center;
+    margin-top: 1px;
+  }
+  & p {
+    justify-self: center;
+    align-self: center;
+    margin: 0;
+    max-width: 100%;
+    min-width: 0;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  &:hover {
+    overflow: visible;
+    z-index: 1;
+
+    & p {
+      min-width: min-content;
+      padding: 5px 10px;
+      border-radius: 20px;
+      box-shadow: 0 0 2px 1px #2049C1, inset 0 0 2px 1px #2049C1;
+      background: linear-gradient(135deg, #333a3a 0% ,#2f2922 100%);
+      background-size: 400%;
+    }
+  }
+}
