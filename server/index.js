@@ -7,7 +7,7 @@ import 'dotenv/config.js';
 
 const PQueue = pq.default
 const filesDirPath = process.env.PLEX_MEDIA_HOME;
-const port = process.env.PORT;
+const port = process.env.SERVER_PORT;
 const textContent = { "Content-Type": "text/html", "Access-Control-Allow-Origin": "*" }
 const filesContent = { "Content-Type": "multipart/form-data", "Access-Control-Allow-Origin": "*" }
 
