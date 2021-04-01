@@ -4,6 +4,7 @@ import Busboy from 'busboy';
 import { terminalColours } from './terminal-colours.js';
 import pq from 'p-queue'
 import 'dotenv/config.js';
+import { sanitiseFilename } from './utils.js';
 
 const PQueue = pq.default
 const filesDirPath = process.env.PLEX_MEDIA_HOME;
@@ -59,15 +60,16 @@ http.createServer((req, res) => {
     let filesUploaded = 0;
 
     busboy.on('file', async (fieldname, file, filename) => {
+      const sanitisedFilename = sanitiseFilename(filename);
       const processFile = async () => {
         totalBytes = incomingFiles[filename];
         file.on('data', data => {
           bytesReceived += data.length;
           let progress = ((bytesReceived / totalBytes) * 100).toFixed(2);
-          progressBar(filename, progress, false);
+          progressBar(sanitisedFilename, progress, false);
         });
 
-        const fstream = fs.createWriteStream(filesDirPath + req.url + filename);
+        const fstream = fs.createWriteStream(filesDirPath + req.url + sanitisedFilename);
         file.pipe(fstream);
 
         file.on('error', err => console.log('error: ', err));
@@ -76,7 +78,7 @@ http.createServer((req, res) => {
           fstream.on('close', () => {
             bytesReceived = 0;
             process.stdout.clearLine();
-            progressBar(filename, 100, true)
+            progressBar(sanitisedFilename, 100, true)
             resolve(filename);
             filesUploaded ++;
           })
