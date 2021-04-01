@@ -69,7 +69,7 @@ http.createServer((req, res) => {
           progressBar(sanitisedFilename, progress, false);
         });
 
-        const fstream = fs.createWriteStream(filesDirPath + req.url + sanitisedFilename);
+        const fstream = fs.createWriteStream(filesDirPath + decodeURI(req.url) + sanitisedFilename);
         file.pipe(fstream);
 
         file.on('error', err => console.log('error: ', err));
