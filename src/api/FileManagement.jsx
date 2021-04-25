@@ -4,10 +4,13 @@ const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export const uploadFiles = async (files, path, progress) => {
   const options = {
-    url: baseUrl + path,
+    url: baseUrl + '/upload',
     method: 'POST',
     data: files,
-    onUploadProgress: progress
+    onUploadProgress: progress,
+    params: {
+      cwd: path
+    }
   };
 
   return axios(options)
@@ -16,6 +19,24 @@ export const uploadFiles = async (files, path, progress) => {
     }).catch(err => {
       return err;
   })
+}
+
+export const newDirectory = async (newDirectoryName, path) => {
+  const options = {
+    url: baseUrl + '/new-dir',
+    method: 'POST',
+    params: {
+      dir: newDirectoryName,
+      cwd: path
+    }
+  };
+
+  return axios(options)
+    .then(res => {
+      return res;
+    }).catch(err => {
+      return err;
+    })
 }
 
 export const getDirectoryContents = (cwd) => {

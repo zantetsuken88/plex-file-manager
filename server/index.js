@@ -1,35 +1,57 @@
 import http from 'http';
 import fs from 'fs';
-import Busboy from 'busboy';
-import { terminalColours } from './terminal-colours.js';
-import { progressBar } from "./progress-bar.js";
-import pq from 'p-queue'
 import 'dotenv/config.js';
-import { sanitiseFilename } from './utils.js';
-import * as readline from 'readline';
+import { handleUpload } from './upload-handler.js';
+import { printColour } from "./utils.js";
+import { terminalColours } from './terminal-colours.js';
 
-const PQueue = pq.default
 const filesDirPath = process.env.PLEX_MEDIA_HOME;
 const port = process.env.SERVER_PORT;
 const textContent = { "Content-Type": "text/html", "Access-Control-Allow-Origin": "*" }
-const filesContent = { "Content-Type": "multipart/form-data", "Access-Control-Allow-Origin": "*" }
-
-const { reset, cyan, magenta } = terminalColours;
-
-const printColour = (colour, text) => process.stdout.write(colour + text + reset + '\n');
+const { cyan, green, red } = terminalColours;
 
 http.createServer((req, res) => {
-  const workQueue = new PQueue({ concurrency: 1 });
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  const cwd = decodeURI(url.searchParams.get('cwd'));
 
-  if (req.method === "GET") {
-    const url = new URL(req.url, `http://${req.headers.host}`);
-
-    const path = url.searchParams.get('cwd');
+  if (url.pathname === '/upload') {
+    if (req.method === "OPTIONS") {
+      res.writeHead(200, {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Content-Disposition"
+      });
+      res.end();
+    } else {
+      handleUpload(req, res, cwd, filesDirPath);
+    }
+  } else if (url.pathname === '/new-dir') {
+    try {
+      const dir = url.searchParams.get('dir');
+      const directoryPath = filesDirPath + cwd + dir;
+      printColour(cyan, `Received request to create directory: ${dir}`);
+      fs.mkdir(directoryPath, { recursive: true }, err => {
+        if (err) {
+          console.error('there was an error creating directory: ');
+          res.writeHead(500, 'there was an error creating directory: ' + err.message, textContent);
+          res.end();
+          throw err;
+        } else {
+          printColour(green, `New directory [${dir}] successfully created!`);
+          res.writeHead(200, textContent);
+          res.end(`Created new directory at ${directoryPath}!`);
+        }
+      });
+    } catch (e) {
+      printColour(red, 'Oh no! Looks like the developer has no idea what he is doing and an error has occurred!: ', e);
+      throw e;
+    }
+  } else if (req.method === "GET") {
     res.writeHead(200, textContent);
-    fs.readdir(filesDirPath + path, { withFileTypes: true } , (err, files) => {
+    fs.readdir(filesDirPath + cwd, { withFileTypes: true } , (err, files) => {
       let contents = [];
       files.forEach(file => {
-        contents.push({
+        !file.name.startsWith('.') && contents.push({
           name: file.name,
           isDirectory: file.isDirectory() === true
         })
@@ -37,78 +59,6 @@ http.createServer((req, res) => {
       res.write(JSON.stringify(contents));
       res.end();
     })
-  } else if (req.method === "OPTIONS") {
-    res.writeHead(200, {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Content-Disposition"
-    });
-    res.end();
-
-  } else if (req.method === "POST") {
-    let bytesReceived = 0;
-    let totalBytes = 0;
-    let incomingFiles;
-    let busboy = new Busboy({ headers: req.headers });
-    let filesUploaded = 0;
-
-    busboy.on('file', async (fieldname, file, filename) => {
-      const isTty = process.stdout.isTTY;
-      const sanitisedFilename = sanitiseFilename(filename);
-      !isTty && printColour(cyan, `Currently receiving file: [${sanitisedFilename}]. Please wait...`)
-      const processFile = async () => {
-        totalBytes = incomingFiles[filename];
-        file.on('data', data => {
-          bytesReceived += data.length;
-          let progress = ((bytesReceived / totalBytes) * 100).toFixed(2);
-          isTty && progressBar(sanitisedFilename, progress, false);
-        });
-
-        const fstream = fs.createWriteStream(filesDirPath + decodeURI(req.url) + sanitisedFilename);
-        file.pipe(fstream);
-
-        file.on('error', err => console.log('error: ', err));
-
-        return new Promise(resolve =>
-          fstream.on('close', () => {
-            bytesReceived = 0;
-            readline.clearLine(process.stdout, 0);
-            readline.cursorTo(process.stdout, 0, null);
-            progressBar(sanitisedFilename, 100, true)
-            resolve(filename);
-            filesUploaded ++;
-          })
-        );
-      }
-
-      await workQueue.add(async () => {
-        await processFile();
-      });
-  });
-
-    busboy.on('field', (fieldname, val) => {
-      workQueue.add(async () => {
-        await (async () => {
-          if (fieldname === 'fileList') {
-            incomingFiles = JSON.parse(val);
-            printColour(magenta, 'Incoming File List received. Expected files:');
-            console.log(incomingFiles);
-          }
-        })();
-      });
-    })
-
-    busboy.on('finish', () => {
-      workQueue.add(async () => {
-        await (async () => {
-          printColour(cyan, 'Files Uploaded Successfully!');
-          res.writeHead(200, filesContent);
-          res.end(`Successfully uploaded ${filesUploaded} files!`);
-        })();
-      });
-    });
-
-    req.pipe(busboy);
   }
 }).listen(port);
 console.log("Running server on port " + port);

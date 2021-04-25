@@ -4,21 +4,22 @@
   grid-template-columns: 1fr 1fr;
   grid-gap: 5px;
 
-  & button {
+  &-buttons {
     grid-column-start: 2;
     grid-row-start: 3;
-    background-color: unset;
-    border-radius: 40px;
-    box-shadow: 0 0 2px 1px #2049C1, inset 0 0 2px 1px #2049C1;
-    border: none;
-    font: unset;
-    color: unset;
     place-self: center;
-    padding: 5px 20px;
 
-    &:focus {
-      outline: none;
-      box-shadow: 0 0 2px 1px #2049C1, inset 0 0 2px 1px #fefcb4;
+    & button {
+      margin: 0 10px;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 2px 1px #2049C1, inset 0 0 2px 1px #fefcb4;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

@@ -15,3 +15,13 @@
 .logo {
   grid-column-start: 0;
 }
+
+button {
+  background-color: unset;
+  border-radius: 40px;
+  box-shadow: 0 0 2px 1px #2049C1, inset 0 0 2px 1px #2049C1;
+  border: none;
+  font: unset;
+  color: unset;
+  padding: 5px 20px;
+}

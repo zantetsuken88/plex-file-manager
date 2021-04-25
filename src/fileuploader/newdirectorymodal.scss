@@ -1,0 +1,77 @@
+.input-container {
+  box-shadow: -10px 10px 50px 5px #181e30;
+  border-width: 1px;
+  border-style: solid;
+  border-image-source: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(28, 107, 247, 1) 10%, rgba(201, 34, 255, 1) 77%);
+  border-image-slice: 1;
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+  grid-gap: 10px;
+  position: absolute;
+  top: 15%;
+  left: 40%;
+  padding: 10px;
+  background: linear-gradient(135deg, #333a3a 0%, #2f2922 100%);
+  animation: input-show 1s 1 forwards;
+
+  & button {
+    align-self: center;
+    height: 30px;
+    cursor: pointer;
+  }
+
+  & input {
+    align-self: center;
+    height: 30px;
+    background-color: unset;
+    color: hsla(0,0%,100%,.7);
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+  }
+}
+
+@property --grad-opacity {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+.fullscreen-modal {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(135deg, rgb(51 58 58 / var(--grad-opacity)) 0%, rgb(47 41 34 / var(--grad-opacity)) 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: modal-show 1s 1 forwards;
+
+  &-closing {
+    animation: modal-close 0.5s 1 forwards;
+
+    > div {
+      animation: input-hide 0.5s 1 forwards;
+    }
+  }
+}
+
+@keyframes modal-show {
+  from { --grad-opacity: 0% }
+  to { --grad-opacity: 80% }
+}
+
+@keyframes modal-close {
+  from { --grad-opacity: 80% }
+  to { --grad-opacity: 0% }
+}
+
+@keyframes input-show {
+  from { opacity: 0 }
+  to { opacity: 100% }
+}
+
+@keyframes input-hide {
+  from { opacity: 100% }
+  to { opacity: 0 }
+}

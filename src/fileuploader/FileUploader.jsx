@@ -7,11 +7,14 @@ import upload from '../assets/upload-to-cloud.png';
 import bullet from '../assets/round-small-edit.svg';
 import smile from '../assets/sun-small.svg';
 import FilesLabel from '../assets/FilesLabel';
+import NewDirectoryModal from "./NewDirectoryModal";
 
-export default function FileUploader({ handleSubmit, currentDir, handleUpload, progress, onProgressChange, uploadResponse}) {
+export default function FileUploader({ handleSubmit, currentDir, handleUpload, progress, onProgressChange, uploadResponse, handNewDir }) {
   const file = useRef(null);
   const [isUploading, setIsUploading] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalClass, setModalClass] = useState('');
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +38,19 @@ export default function FileUploader({ handleSubmit, currentDir, handleUpload, p
         setSelectedFiles([]);
       }
     );
+  }
+
+  const handleNewFolder = () => {
+    setShowModal(true);
+  }
+
+  const handleCloseModal = async () => {
+    setModalClass('fullscreen-modal-closing');
+    const timeout = await setTimeout(() => {
+      setShowModal(false);
+      setModalClass('');
+      clearTimeout(timeout);
+    }, 500);
   }
 
   const sanitisedDirectory = (dir) => {
@@ -91,7 +107,7 @@ export default function FileUploader({ handleSubmit, currentDir, handleUpload, p
       </div>
       <div className='dropzone'>
         <label className='file-input-label'>
-          <input id='file-input-hidden' ref={file} type='file' formEncType='multipart/form-data' multiple onChange={updateDropZoneContents}/>
+          <input id='file-input-hidden' ref={file} type='file' formEncType='multipart/form-data' multiple onChange={updateDropZoneContents} />
           <img src={upload} alt='upload'/>
         </label>
       </div>
@@ -103,7 +119,11 @@ export default function FileUploader({ handleSubmit, currentDir, handleUpload, p
           <FilesSelected/>
         </div>
       </fieldset>
-      <button type='submit'>Submit</button>
+      <div className='uploader-container-buttons'>
+        <button type='submit'>Submit</button>
+        <button type='button' onClick={() => handleNewFolder()}>New Folder</button>
+      </div>
+      { showModal && <NewDirectoryModal handleNewDir={dir => handNewDir(dir)} classes={modalClass} onCancelModal={() => handleCloseModal()}/> }
       <ProgressBar progress={progress} isUploading={isUploading} uploadResponse={uploadResponse}/>
     </form>
   )

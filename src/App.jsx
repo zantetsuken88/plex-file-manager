@@ -3,13 +3,13 @@ import './App.scss';
 import FileBrowser from './filebrowser/FileBrowser';
 import Logo from './assets/logo.jsx';
 import FileUploader from './fileuploader/FileUploader';
-import { getDirectoryContents, uploadFiles } from './api/FileManagement';
+import { getDirectoryContents, uploadFiles, newDirectory } from './api/FileManagement';
 
 function App() {
   const [ currentDir, setCurrentDir ] = useState('/');
-  const [fileList, updateFileList] = useState([]);
-  const [progress, setProgress] = useState(0);
-  const [postRes, updatePostRes] = useState('');
+  const [ fileList, updateFileList ] = useState([]);
+  const [ progress, setProgress ] = useState(0);
+  const [ postRes, updatePostRes ] = useState('');
 
   const getFiles = useCallback(
     () => {
@@ -17,6 +17,16 @@ function App() {
         .then(files => updateFileList(files));
       }, [ currentDir ]
   );
+
+  const postNewDir = async (newDir) => {
+    await newDirectory(newDir, currentDir)
+      .then(response => {
+        updatePostRes(response.data);
+        getFiles();
+      }).catch(err => {
+        console.error(err);
+      });
+  }
 
   useEffect(() => {
     getFiles();
@@ -34,19 +44,20 @@ function App() {
   }
     return (
     <main className="app">
-      <header className='header'>
-        <div className='logo'>
-          <Logo id={'logo'}/>
-        </div>
-        <FileUploader
-          currentDir={ currentDir }
-          handleUpload={files => uploadSelectedFiles(files)}
-          progress={progress}
-          uploadResponse={postRes}
-          onProgressChange={progress => setProgress(progress)}
-        />
-      </header>
-      <FileBrowser currentDir={ currentDir } fileList={fileList} onDirChange={dir => setCurrentDir(dir)}/>
+        <header className='header'>
+          <div className='logo'>
+            <Logo id={'logo'}/>
+          </div>
+          <FileUploader
+            currentDir={ currentDir }
+            handleUpload={files => uploadSelectedFiles(files)}
+            progress={progress}
+            uploadResponse={postRes}
+            onProgressChange={progress => setProgress(progress)}
+            handNewDir={dir => postNewDir(dir)}
+          />
+        </header>
+        <FileBrowser currentDir={ currentDir } fileList={fileList} onDirChange={dir => setCurrentDir(dir)}/>
     </main>
   );
 }
