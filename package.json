@@ -13,7 +13,7 @@
     "p-queue": "^6.6.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.3",
     "sass": "^1.32.6"
   },
   "scripts": {

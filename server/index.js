@@ -43,22 +43,29 @@ http.createServer((req, res) => {
         }
       });
     } catch (e) {
-      printColour(red, 'Oh no! Looks like the developer has no idea what he is doing and an error has occurred!: ', e);
+      printColour(red, 'Oh no! Looks like the developer has no idea what he is doing and an error has occurred!: \u1f62d', e);
       throw e;
     }
   } else if (req.method === "GET") {
-    res.writeHead(200, textContent);
-    fs.readdir(filesDirPath + cwd, { withFileTypes: true } , (err, files) => {
-      let contents = [];
-      files.forEach(file => {
-        !file.name.startsWith('.') && contents.push({
-          name: file.name,
-          isDirectory: file.isDirectory() === true
+    try {
+      printColour(cyan, `Received request for contents of dir: [${filesDirPath + cwd}]...`);
+      res.writeHead(200, textContent);
+      fs.readdir(filesDirPath + cwd, { withFileTypes: true } , (err, files) => {
+        let contents = [];
+        files.forEach(file => {
+          !file.name.startsWith('.') && contents.push({
+            name: file.name,
+            isDirectory: file.isDirectory() === true
+          })
         })
+        printColour(green, `Success! Returning directory contents: \n${JSON.stringify(contents)}`);
+        res.write(JSON.stringify(contents));
+        res.end();
       })
-      res.write(JSON.stringify(contents));
-      res.end();
-    })
+    } catch (e) {
+      printColour(red, 'Error fetching directory contents \u1f62d')
+      throw e;
+    }
   }
 }).listen(port);
 console.log("Running server on port " + port);

@@ -33,15 +33,16 @@
 }
 
 @property --grad-opacity {
-  syntax: '<percentage>';
+  syntax: '<number>';
   inherits: false;
-  initial-value: 0%;
+  initial-value: 0;
 }
 
 .fullscreen-modal {
+  --grad-opacity: 0%;
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(135deg, rgb(51 58 58 / var(--grad-opacity)) 0%, rgb(47 41 34 / var(--grad-opacity)) 100%);
+  background-image: linear-gradient(135deg, rgba(51 58 58 / var(--grad-opacity)) 0%, rgba(47 41 34 / var(--grad-opacity)) 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -57,21 +58,21 @@
 }
 
 @keyframes modal-show {
-  from { --grad-opacity: 0% }
-  to { --grad-opacity: 80% }
+  from { --grad-opacity: 0 }
+  to { --grad-opacity: 0.8 }
 }
 
 @keyframes modal-close {
-  from { --grad-opacity: 80% }
-  to { --grad-opacity: 0% }
+  from { --grad-opacity: 0.8 }
+  to { --grad-opacity: 0 }
 }
 
 @keyframes input-show {
   from { opacity: 0 }
-  to { opacity: 100% }
+  to { opacity: 1 }
 }
 
 @keyframes input-hide {
-  from { opacity: 100% }
+  from { opacity: 1 }
   to { opacity: 0 }
 }
